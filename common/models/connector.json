@@ -1,0 +1,30 @@
+{
+  "name": "Connector",
+  "base": "PersistedModel",
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true
+  },
+  "properties": {
+    "url": {
+      "type": "string",
+      "required": true
+    },
+    "domain": {
+      "type": "string"
+    },
+    "chainScraping": {
+      "type": [
+        "object"
+      ],
+      "required": true
+    },
+    "active": {
+      "type": "boolean"
+    }
+  },
+  "validations": [],
+  "relations": {},
+  "acls": [],
+  "methods": []
+}
