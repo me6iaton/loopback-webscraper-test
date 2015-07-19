@@ -1,0 +1,20 @@
+{
+  "ids": {
+    "User": 1,
+    "AccessToken": 1,
+    "ACL": 1,
+    "RoleMapping": 1,
+    "Role": 1,
+    "Connector": 2
+  },
+  "models": {
+    "User": {},
+    "AccessToken": {},
+    "ACL": {},
+    "RoleMapping": {},
+    "Role": {},
+    "Connector": {
+      "1": "{\"url\":\"bitcoinwarrior.net/category/google-bitcoin-news/\",\"domain\":\"bitcoinwarrior.net\",\"chainScraping\":[{\"find\":\".item-details\"},{\"set\":{\"title\":\"h3 a\",\"description\":\".td-post-text-excerpt\",\"location\":\"h3 a@href\"}},{\"follow\":\"h3 a@href\"},{\"set\":{\"content\":\".td-post-text-content\"}}],\"active\":false,\"id\":1}"
+    }
+  }
+}
