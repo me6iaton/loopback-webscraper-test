@@ -13,12 +13,10 @@ module.exports = function(Connector) {
       }
 
       scraper
-        .log(console.log)
         .error(function(msg){
           throw msg
         })
         .data(function(data) {
-          //console.log(data);
           response.push(data);
         })
         .done(function(){
@@ -33,7 +31,7 @@ module.exports = function(Connector) {
   {
     http: {path: '/fetch', verb: 'get'},
     accepts: {arg: 'id', type: 'number', required: true, http: { source: 'query' } },
-    returns: {arg: 'response', type: 'array'}
+    returns: {arg: 'response', type: 'array', root: true}
   });
 };
 
