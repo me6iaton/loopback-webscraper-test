@@ -65,7 +65,7 @@ module.exports = function(Connector) {
             return new Date(b.published) - new Date(a.published);
           });
         }
-        cb(null, results)
+        if (cb) cb(null, results);
       });
   };
 
