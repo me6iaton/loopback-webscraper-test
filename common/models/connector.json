@@ -22,6 +22,9 @@
     "scrapCheckpoint": {
       "type": "object"
     },
+    "schedule": {
+      "type": "string"
+    },
     "active": {
       "type": "boolean"
     }
