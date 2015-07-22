@@ -29,11 +29,9 @@ module.exports = function(Connector) {
       .done(function(){
         // sort results by published field, because follow command performed concurrency
         // set scraper.config('concurrency', 1) for disable this
-        if(results[0] && results[0].published){
-          results.sort(function(a,b){
-            return new Date(b.published) - new Date(a.published);
-          });
-        }
+        results.sort(function(a,b){
+          return new Date(b.created) - new Date(a.created);
+        });
         if (cb) cb(null, results);
       });
     });
