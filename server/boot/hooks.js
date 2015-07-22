@@ -7,8 +7,8 @@ module.exports = function(app) {
     for (var item of results){
       records.push({
         connector: ctx.instance.id,
-        created: item.created,
         url: item.url,
+        created: item.created,
         data: item
       })
     }

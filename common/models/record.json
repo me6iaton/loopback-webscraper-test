@@ -6,13 +6,12 @@
     "validateUpsert": true
   },
   "properties": {
-    "url": {
-      "type": "string",
-      "required": true,
-      "id": true
-    },
     "connector": {
       "type": "number",
+      "required": true
+    },
+    "url": {
+      "type": "string",
       "required": true
     },
     "created": {
