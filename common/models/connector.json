@@ -19,9 +19,6 @@
       ],
       "required": true
     },
-    "scrapCheckpoint": {
-      "type": "object"
-    },
     "schedule": {
       "type": "string"
     },
