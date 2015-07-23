@@ -101,7 +101,7 @@ module.exports = function(Connector) {
     var connector = this;
     // first get last record, not fetch already stored data check
     Connector.app.models.Record.findOne({order: 'created DESC', where: {connector: connector.id}}, function(err, record){
-      if(err) return console.error(err);
+      if(err) return cb(err);
       scrape({connector: connector, record: record}, cb);
     });
   };
@@ -114,6 +114,28 @@ module.exports = function(Connector) {
     scrape({connector: this}, cb);
   };
 
+  /**
+   *   start Scheduler
+   * @param cb callback
+   */
+  Connector.prototype.startScheduler = function (cb){
+    this.updateAttribute('active', true, function(err){
+      if(err) cb(err);
+      cb(null);
+    })
+  };
+
+  /**
+   *   stop Scheduler
+   * @param cb callback
+   */
+  Connector.prototype.stopScheduler = function (cb){
+    this.updateAttribute('active', false, function(err){
+      if(err) cb(err);
+      cb(null);
+    })
+  };
+
   Connector.remoteMethod (
   'scrapeAndCreateRecords',
   {
@@ -122,7 +144,6 @@ module.exports = function(Connector) {
     returns: {arg: 'results', type: 'array', root: true},
     description: "Scrape url and create Records after, use chainScraping property"
   });
-
   Connector.remoteMethod (
   'scrapeAndUpdateOrCreateRecords',
   {
@@ -131,5 +152,20 @@ module.exports = function(Connector) {
     returns: {arg: 'results', type: 'array', root: true},
     description: "Scrape url and update or create Records after, use chainScraping property"
   });
+  Connector.remoteMethod (
+  'startScheduler',
+  {
+    isStatic: false,
+    http: {path:'/startScheduler', verb: 'put'},
+    description: "Start scraper scheduler"
+  });
+  Connector.remoteMethod (
+  'stopScheduler',
+  {
+    isStatic: false,
+    http: {path:'/stopScheduler', verb: 'put'},
+    description: "Stop scraper scheduler"
+  });
+
 };
 
