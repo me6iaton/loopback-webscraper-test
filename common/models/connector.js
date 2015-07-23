@@ -91,6 +91,8 @@ var handleScrapDataConstructor = function(ctx){
 
 module.exports = function(Connector) {
 
+  Connector.disableRemoteMethod('createChangeStream', true);
+
   /**
    * scrapeAndCreateRecords
    * @param cb
@@ -117,7 +119,8 @@ module.exports = function(Connector) {
   {
     isStatic: false,
     http: {path:'/scrape', verb: 'post'},
-    returns: {arg: 'results', type: 'array', root: true}
+    returns: {arg: 'results', type: 'array', root: true},
+    description: "Scrape url and create Records after, use chainScraping property"
   });
 
   Connector.remoteMethod (
@@ -125,7 +128,8 @@ module.exports = function(Connector) {
   {
     isStatic: false,
     http: {path:'/scrape', verb: 'put'},
-    returns: {arg: 'results', type: 'array', root: true}
+    returns: {arg: 'results', type: 'array', root: true},
+    description: "Scrape url and update or create Records after, use chainScraping property"
   });
 };
 
