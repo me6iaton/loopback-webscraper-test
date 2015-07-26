@@ -2,11 +2,11 @@
 
 Проект нужно запускать из деректории ./server командой node server.js
 
-Проект основан на фрейворке [LoopBack](http://loopback.io).
+Проект основан на фреймворке [LoopBack](http://loopback.io).
 
-Это позволяет подключать различные бызы данных, а предоставлет доступ к данным с помощью универсального rest api.
+Это позволяет подключать различные базы данных и предоставляет доступ к данным с помощью универсального rest api.
 
-Вместо базы данных используется [Memory connector](http://docs.strongloop.com/display/public/LB/Memory+connector)
+Сейчас вместо базы данных используется [Memory connector](http://docs.strongloop.com/display/public/LB/Memory+connector),
 который позвалет сохранять данные в [файле](./server/data.json) между запусками приложения.
 
 ## LoopBack Api
@@ -21,18 +21,18 @@
 
 Через rest api можно создавать, запрашивать, обновлять и удалять данные приложения.
 
-Доступны как статичексие методы работы с моделью, например
-- GET /Connectors - запросить и отфильтровать конекторы
-- POST /Connectors - создать новые конекторы  
+Доступны как статичексие методы работы с моделью, например:
+- GET /Connectors - запросить и отфильтровать коннекторы
+- POST /Connectors - создать новые коннекторы  
 
 Так и методы экземпляра модели, например
-- PUT /Connectors/{id} - обновить свойства конектора  
+- PUT /Connectors/{id} - обновить свойства коннектора  
 - POST /Connectors/{id}/scrap - запустить сканирование, создать новые записи и вывести результат.  
 - POST /Connectors/{id}/scrap - запустить сканирование, создать новые записи или обновить уже созданные и вывести результат.
 
-Все опрерации доступны в [http://0.0.0.0:3000/explorer](http://0.0.0.0:3000/explorer)
-Get запросы поддерживают фитрацию, сортировку и лимиты [документация](http://docs.strongloop.com/display/public/LB/Where+filter)
-Все методы можно вызать 3 способами:
+Все операции доступны в [http://0.0.0.0:3000/explorer](http://0.0.0.0:3000/explorer)
+Get запросы поддерживают фильтрацию, сортировку и лимиты, [документация](http://docs.strongloop.com/display/public/LB/Where+filter)
+Все методы можно вызвать 3 способами:
 
 в api explore в формате json
 ```json
@@ -56,7 +56,7 @@ Record.find({"where":{"connector":"1"}},function(err, records){
 Хуки для записи результатов сканирования в базу данных [./server/boot/hooks.js](./server/boot/hooks.js)
 
 ## Connector
-Задает начальный url для парсинга, старатегию  перебора страниц и расписание.
+Задает начальный url для парсинга, стратегию  перебора страниц и расписание.
 [В базе есть два примера](http://0.0.0.0:3000/explorer/#!/Connectors/find) для
 [bitcoinwarrior.net](bitcoinwarrior.net/category/google-bitcoin-news/) и [www.reddit.com/r/node/](ttps://www.reddit.com/r/node/)
 
@@ -73,8 +73,9 @@ Record.find({"where":{"connector":"1"}},function(err, records){
 }
 ```
 #### Properties
-**chainScraping** - параметры в json формате для парсера страниц, траслируются в вызовы функций [node-osmosis](https://github.com/rc0x03/node-osmosis) поддержка csc, xpath селекторов и рекусивного перехода по ссылкам
-из контента основной страницы, например для парсинга полного текста новости.
+**chainScraping** - параметры в json формате для парсера страниц, транслируются в вызовы функций [node-osmosis](https://github.com/rc0x03/node-osmosis) поддержка csc, xpath селекторов и рекурсивного перехода по ссылкам
+из контента основной страницы например, для парсинга полного текста новости.  
+Есть удобное [расширение](http://selectorgadget.com/) для поиска нужных селекторов.  
 
 Пример для [bitcoinwarrior.net](bitcoinwarrior.net/category/google-bitcoin-news/)
 ```json
@@ -134,4 +135,4 @@ Record.find({"where":{"connector":"1"}},function(err, records){
 [./server/boot/hooks.js](./server/boot/hooks.js) - хуки для автоматической записи и обновления результатов сканирования.
 
 #### REST endpoints
-доступны стандартные rest опрерации, кроме создания - записи создаютя при вызове методов scrapeAndCreateRecords или scrapeAndUpdateOrCreateRecords.  
+доступны стандартные rest операции, кроме создания - записи создаются при вызове методов scrapeAndCreateRecords или scrapeAndUpdateOrCreateRecords.  
