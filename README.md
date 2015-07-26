@@ -1,13 +1,15 @@
 # loopback-webscraper-test
 
-Проект нужно запускать из деректории ./server командой node server.js
+Проект нужно запускать из корневой деректории командой node .
+
+При запуске в webstorm 10 командой server/server.js, может понадобится перенести файл с базой данных из ./data.json в server/data.json. В webstorm 11 EAP это мне не понадобилось.  
 
 Проект основан на фреймворке [LoopBack](http://loopback.io).
 
 Это позволяет подключать различные базы данных и предоставляет доступ к данным с помощью универсального rest api.
 
 Сейчас вместо базы данных используется [Memory connector](http://docs.strongloop.com/display/public/LB/Memory+connector),
-который позвалет сохранять данные в [файле](./server/data.json) между запусками приложения.
+который позвалет сохранять данные в [файле](./data.json) между запусками приложения.
 
 ## LoopBack Api
 
